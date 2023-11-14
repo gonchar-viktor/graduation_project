@@ -1,12 +1,9 @@
-import pytest
-from selenium.webdriver.support import expected_conditions as EC
-from data import TEST_USER
-from pages.login_page import user_authorization, LoginPage
+from pages.login_page import LoginPage
 from conftest import driver
+from pages.login_page import user_authorization
 
 
 class TestAuthorizationWindow:
-    """Class for checking the user authorization window"""
 
     def test_user_will_be_logged_new_sessions(
             self, user_authorization, driver):  # 5
@@ -28,39 +25,29 @@ class TestAuthorizationWindow:
         login_page.driver.get(login_page.link_main_page)
         login_page.assert_that_the_user_has_logged_in()
 
-    def test_valid_mail_format(self, driver):  # 6
-        """Checks the valid mail format for authorization."""
+    def test_incorrect_email_format(self, driver):  # 6
+        """Checks that if you enter an incorrect email format for
+        authorization, it will generate an error message."""
         login_page = LoginPage(driver)
         login_page.log_in_to_the_login_window()
-        login_page.fill(
-            login_page.locator_input_email,
-            login_page.negative_text_email
-        )
-        login_page.fill(
-            login_page.locator_input_password,
-            login_page.negative_text_password
-        )
+        login_page.enter_incorrect_format_email()
         login_page.hard_click(login_page.locator_login_submit)
-        login_page.assert_text_in_element(
-            login_page.locator_error_message_email,
-            login_page.expected_message_email
-        )
+        login_page.assert_error_message_email()
 
-    def test_invalid_password(self, driver):  # 7
-        """Checks the valid password for authorization."""
+    def test_incorrect_password(self, driver):  # 7
+        """Checks that if you enter the wrong password for authorization,
+        an error message will be displayed."""
         login_page = LoginPage(driver)
         login_page.log_in_to_the_login_window()
-        login_page.fill(login_page.locator_input_email, TEST_USER.get('email'))
-        login_page.fill(login_page.locator_input_password, '1111')
+        login_page.enter_incorrect_password()
         login_page.hard_click(login_page.locator_login_submit)
-        login_page.assert_text_in_element(
-            login_page.locator_error_message_password,
-            login_page.expected_message_password)
+        login_page.assert_error_message_password()
 
     def test_possible_to_register_a_new_user(self, driver):  # 8
-        """Checks that it is possible to register a new user by clicking the
-        "Registration" button in the authorization window."""
+        """Checks that when you click on the “register” button for a new user
+        in the authorization window, the new user registration form on the
+        site opens."""
         login_page = LoginPage(driver)
         login_page.log_in_to_the_login_window()
         login_page.hard_click(login_page.locator_button_register)
-        EC.visibility_of_element_located(login_page.locator_assert_register)
+        login_page.assert_switching_to_the_new_user_registration_window()

@@ -1,22 +1,12 @@
-import pytest as pytest
-from selenium.webdriver.common.by import By
 from conftest import driver
 from data.urls import DOMAIN
 from elements.footer_element import FooterElement
 from elements.header_element import HeaderElement
-from helpers.assertions import Assertion
-from helpers.fields import FieldsWebElement
 from helpers.cookies import Cookies
+from locators.main_page_locators import MainPageLocators
 
 
-class MainPage(FooterElement, Cookies, HeaderElement):
-
-    locator_reject_button_cookies = By.CSS_SELECTOR, '[aria-label="Отклонить"]'
-    link_main_page = 'https://www.21vek.by'
-    locator_account_button = (
-        By.CSS_SELECTOR, '[class="styles_userToolsIcon__Y2sGs"]')
-    locator_authorized_account_button = (
-        By.CSS_SELECTOR, '[class="styles_userToolsToggler__c2aHe"]')
+class MainPage(FooterElement, Cookies, HeaderElement, MainPageLocators):
 
     def open(self):
         self.driver.get(DOMAIN)

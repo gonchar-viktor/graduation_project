@@ -83,8 +83,9 @@ class BasePage:
 
     def set_display_none(self, locator):
         element = self.wait_for_visible(locator)
-        self.driver.execute_script('arguments[0].setAttribute("display",'
-                                   ' arguments[1])', element, 'none')
+        self.driver.execute_script(
+            'arguments[0].setAttribute("display", arguments[1])',
+            element, 'none')
 
     def prompt_alert(self):
         alert = self.driver.switch_to.alert
@@ -95,3 +96,10 @@ class BasePage:
     #
     def switch_to_page_zero(self):
         self.driver.switch_to.window(self.driver.window_handles[0])
+
+    def close_the_page_and_switch_to_page_zero(self):
+        """Closes the current page and goes to the start page."""
+        self.driver.close()
+        self.switch_to_page_zero()
+
+

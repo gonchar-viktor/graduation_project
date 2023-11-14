@@ -66,6 +66,8 @@ def create_edge(headless):
     )
     return driver_edge
 
+
+
 # from selenium.webdriver.chrome.service import Service
 # from selenium.webdriver.chrome.options import Options as ChromeOptions
 # from webdriver_manager.chrome import ChromeDriverManager
