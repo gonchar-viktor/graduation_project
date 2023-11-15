@@ -55,11 +55,6 @@ class FooterElement(Assertion, FieldsWebElement, FooterLocators):
     def assert_confirmation_button_is_clickable(self):
         assert EC.element_to_be_clickable(self.SEND_BUTTON_LOCATOR)
 
-    # def close_the_page_and_switch_to_page_zero(self):
-    #     """Closes the current page and goes to the start page."""
-    #     self.driver.close()
-    #     self.switch_to_page_zero()
-
     def assert_link_social_networks_correct(self):
         """The method clicks on each icon of the social network and checks
         that the desired page opens."""

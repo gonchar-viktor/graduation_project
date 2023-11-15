@@ -29,6 +29,11 @@ class BasePage:
         except WebDriverException:
             assert False, f"Element {locator} not visible"
 
+    def wait_for_element_to_change(self, locator, expected_result):
+        """Waits for an element to change on the page."""
+        WebDriverWait(self.driver, self.wait_until).until(
+            EC.text_to_be_present_in_element(locator, expected_result))
+
     # clicks
 
     def hard_click(self, locator):

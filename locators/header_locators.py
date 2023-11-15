@@ -24,10 +24,10 @@ class HeaderLocators:
     # product categories
 
     PRODUCT_CATALOG_BUTTON_LOCATOR = (
-        By.CSS_SELECTOR, '[class="styles_catalogButton__z9L_j"]'
+        By.CSS_SELECTOR, '.styles_catalogButton__z9L_j'
     )
     CATEGORIES_CONTAINER_LOCATOR = (
-        By.CSS_SELECTOR, '[class="styles_categoriesContainer__Nijol"]'
+        By.CSS_SELECTOR, '.styles_categoriesContainer__Nijol'
     )
 
     # city selection
@@ -43,14 +43,14 @@ class HeaderLocators:
         'button[class*="style_baseActionButtonMargin__4haYC"]'
     )
     CONFIRM_CITY_LOCATOR = (
-        By.CSS_SELECTOR, 'li[class*="styles_flexRow__oouUy"]'
+        By.CSS_SELECTOR, '[class*="styles_flexRow__oouUy"] '
     )
 
     # catalog search
 
     CATALOG_SEARCH_LOCATOR = By.ID, 'catalogSearch'
     CHOOSE_PRODUCT_LOCATOR = (
-        By.CSS_SELECTOR, '[class="ProductItem_productItem__2bD0C"]'
+        By.CSS_SELECTOR, '[href="/nonfiction_books/popuri_01309.html"]'
     )
 
     # contact
@@ -63,6 +63,7 @@ class HeaderLocators:
     # contact drop-list
 
     CONTACTS_DROP_LIST_LOCATOR = By.XPATH, '(//*[text()="Еще"])[2]'
+
     LIFE_PHONE_LOCATOR = (
         By.XPATH, '(//li[@class="styles_communicationListItem___jHWt '
                   'styles_inactive__1IrDM"])[1]'
@@ -97,6 +98,35 @@ class HeaderLocators:
         By.CSS_SELECTOR, '[class*="styles_closeModalIcon__PV5qz"]'
     )
 
-    #
+    # contact center info
 
-    a = '(//*[text()="Еще"])[1]'
+    CONTACT_CENTER_OPENING_HOURS_LOCATOR = (
+        By.CSS_SELECTOR, '[class="styles_workingTimeText__2h7JO"]'
+    )
+
+    # payment and delivery methods
+
+    PAYMENT_IN_INSTALLMENTS_LOCATOR = (
+        By.XPATH,  '(//li[@class="styles_navMenuItem__5EPNe"])[1]'
+    )
+    BONUS_PROGRAM_LOCATOR = (
+        By.XPATH, '(//li[@class="styles_navMenuItem__5EPNe"])[2]'
+    )
+
+    # payment and delivery drop-list
+
+    PAYMENT_AND_DELIVERY_DROP_LIST_LOCATOR = (
+        By.XPATH,  '(//*[text()="Еще"])[1]'
+    )
+    PAYMENT_LOCATOR = (
+        By.XPATH, '(//li[@class="styles_listItem__1ssEb"])[1]'
+    )
+    DELIVERY_LOCATOR = (
+        By.XPATH, '(//li[@class="styles_listItem__1ssEb"])[2]'
+    )
+    SELF_DELIVERY_LOCATOR = (
+        By.XPATH, '(//li[@class="styles_listItem__1ssEb"])[3]'
+    )
+
+    LOGOTYPE_LOCATOR = By.CSS_SELECTOR, '[class="logotype"]'
+
