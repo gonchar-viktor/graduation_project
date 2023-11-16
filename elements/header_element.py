@@ -1,5 +1,3 @@
-import time
-
 from data.contacts import CONTACTS
 from data.urls import *
 from helpers.assertions import Assertion
@@ -8,16 +6,17 @@ from locators.header_locators import HeaderLocators
 from selenium.webdriver.support import expected_conditions as EC
 
 
-
 class HeaderElement(Assertion, FieldsWebElement, HeaderLocators):
-    request_text = '9789851548299'
+
+    CONTACT_CENTER_OPENING_HOURS_TEXT = 'контакт-центр\nс 8:00 до 22:00'
+    request_text = '6.564.524'
 
     def assert_categories_displayed(self):
         assert self.wait_for_visible(
             self.CATEGORIES_CONTAINER_LOCATOR).is_displayed()
 
     def confirm_city_selection(self):
-        self.click_on(self.CONFIRM_CITY_LOCATOR)
+        self.hard_click(self.CONFIRM_CITY_LOCATOR)
 
     def click_on_save_button(self):
         self.hard_click(self.SAVE_BUTTON_LOCATOR)
@@ -25,12 +24,12 @@ class HeaderElement(Assertion, FieldsWebElement, HeaderLocators):
     def click_on_city_selection_button(self):
         self.click_on(self.CITY_SELECTION_BUTTON_LOCATOR)
 
-    def click_on_product(self):
-        self.click_on(self.CHOOSE_PRODUCT_LOCATOR)
+    def click_on_product(self, product):
+        self.click_on(product)
 
-    def enter_product_text(self):
+    def enter_product_text(self, product):
         self.click_on(self.CATALOG_SEARCH_LOCATOR)
-        self.fill(self.CATALOG_SEARCH_LOCATOR, self.request_text)
+        self.fill(self.CATALOG_SEARCH_LOCATOR, product)
 
     def assert_all_links_lead_to_the_desired_page(self):
         """The method clicks on the dictionary keys and checks that the
@@ -108,7 +107,32 @@ class HeaderElement(Assertion, FieldsWebElement, HeaderLocators):
         self.click_on(self.CONTACTS_BUTTON_LOCATOR)
         self.assert_actual_url(EXPECTED_CONTACTS_PAGE_URL)
 
+    def assert_payment_and_delivery_methods_open_correctly(self):
+        self.assert_clicking_on_the_link_opens_the_desired_page(
+            self.PAYMENT_IN_INSTALLMENTS_LOCATOR,
+            PAYMENT_IN_INSTALLMENTS_PAGE_URL, 0
+        )
+        self.assert_clicking_on_the_link_opens_the_desired_page(
+            self.BONUS_PROGRAM_LOCATOR, BONUS_PROGRAM_PAGE_URL, 0
+        )
 
+        self.click_on(self.PAYMENT_AND_DELIVERY_DROP_LIST_LOCATOR)
+        self.assert_clicking_on_the_link_opens_the_desired_page(
+            self.PAYMENT_LOCATOR, PAYMENT_PAGE_URL, 0
+        )
+        self.click_on(self.PAYMENT_AND_DELIVERY_DROP_LIST_LOCATOR)
+        self.assert_clicking_on_the_link_opens_the_desired_page(
+            self.DELIVERY_LOCATOR, DELIVERY_PAGE_URL, 0
+        )
+        self.click_on(self.PAYMENT_AND_DELIVERY_DROP_LIST_LOCATOR)
+        self.assert_clicking_on_the_link_opens_the_desired_page(
+            self.SELF_DELIVERY_LOCATOR, SELF_DELIVERY_PAGE_URL, 0
+        )
+
+    def assert_actual_url_click_logotype(self):
+        self.wait_for_visible(self.LOGOTYPE_LOCATOR)
+        self.click_on(self.LOGOTYPE_LOCATOR)
+        self.assert_actual_url(DOMAIN)
 
 
 

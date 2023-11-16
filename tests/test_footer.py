@@ -5,129 +5,112 @@ from conftest import driver
 
 
 class TestFooter:
-    """Class for checking the footer elements:
-        -contacts
-        -social networks
-        -title columns
-        -email subscription
-        -information block
-        -payment systems"""
 
-    def test_contacts_in_footer_are_visible(self, driver):  # 1
+    def test_contacts_in_footer_are_visible(self, driver):
         """Checks that the contacts are displayed."""
-        main_page = MainPage(driver)
-        main_page.open_page_and_reject_cookies()
-        main_page.assert_element_is_displayed(
-            main_page.CONTACTS_FOOTER_LOCATOR)
+        footer = MainPage(driver)
+        footer.open_page_and_reject_cookies()
+        footer.assert_element_is_displayed(
+            footer.CONTACTS_FOOTER_LOCATOR)
 
-    def test_correct_display_of_numbers_in_footer(self, driver):  # 2
+    def test_correct_display_of_numbers_in_footer(self, driver):
         """Checks that phones are displayed correctly in footer."""
-        main_page = MainPage(driver)
-        main_page.open_page_and_reject_cookies()
-        main_page.assert_the_numbers_footer_are_displayed_correctly()
+        footer = MainPage(driver)
+        footer.open_page_and_reject_cookies()
+        footer.assert_the_numbers_footer_are_displayed_correctly()
 
-    def test_footer_links(self, driver):  # 3
+    def test_footer_links(self, driver):
         """Checks that when links viber and telegram are clicked,
         they open the correct pages."""
-        main_page = MainPage(driver)
-        main_page.open_page_and_reject_cookies()
-        main_page.assert_footer_links_viber_and_telegram_correct()
+        footer = MainPage(driver)
+        footer.open_page_and_reject_cookies()
+        footer.assert_footer_links_viber_and_telegram_correct()
 
-    def test_window_feedback(self, driver):  # 4
+    def test_window_feedback(self, driver):
         """Checks that it is possible to fill out and send SMS
         about feedback."""
-        main_page = MainPage(driver)
-        main_page.open_page_and_reject_cookies()
-        main_page.hard_click(main_page.BUTTON_WRITE_TO_US_LOCATOR)
-        main_page.fill_name_for_feedback()
-        main_page.fill_email_for_feedback()
-        main_page.fill_message_for_feedback()
-        main_page.assert_confirmation_button_is_clickable()
+        footer = MainPage(driver)
+        footer.open_page_and_reject_cookies()
+        footer.hard_click(footer.BUTTON_WRITE_TO_US_LOCATOR)
+        footer.fill_name_for_feedback()
+        footer.fill_email_for_feedback()
+        footer.fill_message_for_feedback()
+        footer.assert_confirmation_button_is_clickable()
 
-    #
-
-    def test_social_networks_display(self, driver):  # 9
+    def test_social_networks_display(self, driver):
         """Checks that the social networks are displayed."""
-        main_page = MainPage(driver)
-        main_page.open_page_and_reject_cookies()
-        main_page.assert_element_is_displayed(
-            main_page.SOCIAL_NETWORKS_LOCATOR)
+        footer = MainPage(driver)
+        footer.open_page_and_reject_cookies()
+        footer.assert_element_is_displayed(
+            footer.SOCIAL_NETWORKS_LOCATOR)
 
-    def test_click_link_social_networks(self, driver):  # 10
+    def test_click_link_social_networks(self, driver):
         """Checks every social network icon."""
-        main_page = MainPage(driver)
-        main_page.open_page_and_reject_cookies()
-        main_page.assert_link_social_networks_correct()
+        footer = MainPage(driver)
+        footer.open_page_and_reject_cookies()
+        footer.assert_link_social_networks_correct()
 
-    #
-
-    def test_text_title_columns(self, driver):  # 11
+    def test_text_title_columns(self, driver):
         """Checking the text from the title columns."""
-        main_page = MainPage(driver)
-        main_page.open_page_and_reject_cookies()
-        main_page.assert_title_text()
+        footer = MainPage(driver)
+        footer.open_page_and_reject_cookies()
+        footer.assert_title_text()
 
-    def test_title_links(self, driver):  # 12
+    def test_title_links(self, driver):
         """Checking the clickability of all title links from the header."""
-        main_page = MainPage(driver)
-        main_page.open_page_and_reject_cookies()
-        main_page.checking_the_clickability_of_locators_from_the_title(43)
+        footer = MainPage(driver)
+        footer.open_page_and_reject_cookies()
+        footer.checking_the_clickability_of_locators_from_the_title(43)
 
-    #
-
-    def test_email_subscription_element(self, driver):  # 13
+    def test_email_subscription_element(self, driver):
         """Checks the display of the email subscription element."""
-        main_page = MainPage(driver)
-        main_page.open_page_and_reject_cookies()
-        main_page.assert_display_of_the_email_subscription_element()
+        footer = MainPage(driver)
+        footer.open_page_and_reject_cookies()
+        footer.assert_display_of_the_email_subscription_element()
 
-    def test_text_in_the_email_subscription_element(self, driver):  # 14
+    def test_text_in_the_email_subscription_element(self, driver):
         """Checks whether the text in the email subscription element is
         displayed correctly."""
-        main_page = MainPage(driver)
-        main_page.open_page_and_reject_cookies()
-        main_page.assert_text_in_element(
-            main_page.SUBSCRIPTION_TEXT_LOCATOR, main_page.expected_text)
+        footer = MainPage(driver)
+        footer.open_page_and_reject_cookies()
+        footer.assert_text_in_element(
+            footer.SUBSCRIPTION_TEXT_LOCATOR, footer.expected_text)
 
-    def test_email_newsletter_subscriptions(self, driver):  # 15
+    def test_email_newsletter_subscriptions(self, driver):
         """Checks that you can subscribe to the newsletter by email by
         entering it in the input field located in footer."""
-        main_page = MainPage(driver)
-        main_page.open_page_and_reject_cookies()
-        main_page.fill(
-            main_page.INPUT_SUBSCRIPTION_EMAIL_LOCATOR,
+        footer = MainPage(driver)
+        footer.open_page_and_reject_cookies()
+        footer.fill(
+            footer.INPUT_SUBSCRIPTION_EMAIL_LOCATOR,
             TEST_USER.get('email')
         )
-        main_page.hard_click(main_page.BUTTON_SUBSCRIPTION_EMAIL_LOCATOR)
-        main_page.assert_element_is_displayed(
-            main_page.AUTHORIZATION_WINDOW_LOCATOR)
-        main_page.fill(
-            main_page.AUTHORIZATION_PASSWORD_LOCATOR,
+        footer.hard_click(footer.BUTTON_SUBSCRIPTION_EMAIL_LOCATOR)
+        footer.assert_element_is_displayed(
+            footer.AUTHORIZATION_WINDOW_LOCATOR)
+        footer.fill(
+            footer.AUTHORIZATION_PASSWORD_LOCATOR,
             TEST_USER.get('password')
         )
-        main_page.hard_click(main_page.AUTHORIZATION_BUTTON_LOGIN_LOCATOR)
-        main_page.hard_click(main_page.CONSENT_BUTTON_LOCATOR)
-        main_page.assert_actual_url(DOMAIN)
+        footer.hard_click(footer.AUTHORIZATION_BUTTON_LOGIN_LOCATOR)
+        footer.hard_click(footer.CONSENT_BUTTON_LOCATOR)
+        footer.assert_actual_url(DOMAIN)
 
-    #
-
-    def test_text_information_block(self, driver):  # 16
+    def test_text_information_block(self, driver):
         """Checks that the information block is visible on the user's
         page, as well as that the text in it is displayed correctly."""
-        main_page = MainPage(driver)
-        main_page.open_page_and_reject_cookies()
-        main_page.assert_element_is_displayed(
-            main_page.INFORMATION_BLOCK_LOCATOR
+        footer = MainPage(driver)
+        footer.open_page_and_reject_cookies()
+        footer.assert_element_is_displayed(
+            footer.INFORMATION_BLOCK_LOCATOR
         )
-        main_page.assert_text_in_element(
-            main_page.INFORMATION_BLOCK_LOCATOR,
-            main_page.text_information_block
+        footer.assert_text_in_element(
+            footer.INFORMATION_BLOCK_LOCATOR,
+            footer.text_information_block
         )
 
-    #
-
-    def test_payment_systems(self, driver):  # 17
+    def test_payment_systems(self, driver):
         """Checking the display of payment systems on the page."""
-        main_page = MainPage(driver)
-        main_page.open_page_and_reject_cookies()
-        main_page.assert_display_of_payment_systems()
+        footer = MainPage(driver)
+        footer.open_page_and_reject_cookies()
+        footer.assert_display_of_payment_systems()
