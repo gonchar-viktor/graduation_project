@@ -1,6 +1,9 @@
 from helpers.base import BasePage
 from selenium.webdriver import Keys
 
+a = 'assert_the_price_has_decreased'
+a = a.replace('_', ' ')
+print(a)
 
 class FieldsWebElement(BasePage):
     def __init__(self, driver):

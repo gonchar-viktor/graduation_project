@@ -19,13 +19,13 @@ following technologies and tools:
 # Installation and launch of the project
 1. Install Python if not already installed.
 
-2. Clone the project repository: git clone https://github.com/gonchar-viktor/graduation_project.git
+2. Clone the project repository: *git clone https://github.com/gonchar-viktor/graduation_project.git*
 
-3. Go to the project directory: cd graduation_project
+3. Go to the project directory: *cd graduation_project*
 
-4. Install dependencies: pip install -r requirements.txt
+4. Install dependencies: *pip install -r requirements.txt*
 
-5. Run the tests: pytest
+5. Run the tests: pytest *-s -v --reruns 5 -n 4*
 
 # Generating reports
 1. Install Allure if not already installed.
