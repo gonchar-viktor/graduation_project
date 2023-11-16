@@ -2,7 +2,6 @@ from selenium.webdriver.common.by import By
 
 
 class FooterLocators:
-
     #   contacts element
 
     CONTACTS_FOOTER_LOCATOR = By.CLASS_NAME, 'Contacts_contactsBlock__zhJiB'

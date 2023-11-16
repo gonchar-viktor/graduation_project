@@ -1,7 +1,4 @@
 from selenium.common import NoSuchElementException
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import WebDriverException
-from selenium.webdriver.support.wait import WebDriverWait
 from conftest import driver
 from data.urls import DOMAIN
 from elements.footer_element import FooterElement
@@ -15,10 +12,12 @@ import allure
 class MainPage(FooterElement, Cookies, HeaderElement, MainPageLocators):
     expected_text_title = 'Онлайн-гипермаркет 21vek.by'
 
+    @allure.severity(allure.severity_level.BLOCKER)
     def open(self):
         with allure.step('open main page'):
             self.driver.get(DOMAIN)
 
+    @allure.step('Reject cookies')
     def reject_cookies(self):
         """A method for rejecting the agreement on the use of cookies on the
         site. Performs a double click on the reject button."""
@@ -26,10 +25,12 @@ class MainPage(FooterElement, Cookies, HeaderElement, MainPageLocators):
         self.hard_click(self.locator_reject_button_cookies)
         self.hard_click(self.locator_reject_button_cookies)
 
+    @allure.step('Open page and reject cookies')
     def open_page_and_reject_cookies(self):
         self.open()
         self.reject_cookies()
 
+    @allure.step('Assert banners and widgets is displayed')
     def assert_banners_and_widgets_is_displayed(self):
         list_locators = [
             self.BANNER_LOCATOR, self.SUGGESTED_MANUFACTURERS_LOCATOR,
@@ -41,9 +42,10 @@ class MainPage(FooterElement, Cookies, HeaderElement, MainPageLocators):
             self.assert_element_is_displayed(i)
 
     def assert_text_title(self):
-        with allure.step('checking the text from the title'):
+        with allure.step('assert text from the title'):
             assert self.expected_text_title == self.driver.title
 
+    @allure.step('Assert adding products to favorites')
     def assert_adding_products_to_favorites(self, range_val):
         """Checks that all products in the "all promotions" section can be
         added to favorites. Every 5 products the widget scrolls to the left."""

@@ -8,7 +8,6 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium.webdriver.edge.service import Service as EdgeService
 
 import allure
-from allure_commons.types import AttachmentType
 
 WAIT_UNTIL = 10
 
@@ -17,15 +16,18 @@ def pytest_addoption(parser):
     parser.addoption(
         '--headless',
         choices=('true', 'false'),
+        default='false',
         help='Run browser in headless mode: "true" or "false"'
     )
     parser.addoption(
         '--browser',
         choices=("chrome", "edge"),
+        default='chrome',
         help='Option to define type of browser'
     )
 
 
+@allure.feature('browser selection and options')
 @pytest.fixture(autouse=True)
 def driver(request):
     driver_browser = None
@@ -44,6 +46,7 @@ def driver(request):
     driver_browser.quit()
 
 
+@allure.story('creating a chrome browser')
 def create_chrome(headless):
     option_chrome = ChromeOption()
     if headless == 'true':
@@ -55,6 +58,7 @@ def create_chrome(headless):
     return driver_chrome
 
 
+@allure.story('creating a edge browser')
 def create_edge(headless):
     option_edge = EdgeOption()
     if headless == 'true':

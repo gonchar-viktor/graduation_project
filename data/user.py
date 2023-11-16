@@ -4,17 +4,8 @@ TEST_USER = {
     'name': 'test user'
 }
 
-
 TEST_ADDRESS = {
     'city': 'г. Минск',
     'street': 'пл. Привокзальная',
     'house': 'д. 3'
 }
-
-# TEST_USER.get('password')
-
-
-
-
-
-

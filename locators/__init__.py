@@ -1,0 +1,5 @@
+from locators.footer_locators import FooterLocators
+from locators.main_page_locators import MainPageLocators
+from locators.basket_locator import BasketLocator
+from locators.header_locators import HeaderLocators
+from locators.login_locators import LoginLocators

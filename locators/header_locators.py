@@ -2,7 +2,6 @@ from selenium.webdriver.common.by import By
 
 
 class HeaderLocators:
-
     # react line
 
     ALL_PROMOTIONS_LOCATOR = (
@@ -77,8 +76,8 @@ class HeaderLocators:
                   'ListItem___jHWt"])[1]'
     )
     EMAIL_LOCATOR = (
-        By.XPATH,'(//li[@class="styles_listItem__ZxDwC styles_communication'
-                 'ListItem___jHWt"])[2]'
+        By.XPATH, '(//li[@class="styles_listItem__ZxDwC styles_communication'
+                  'ListItem___jHWt"])[2]'
     )
     ORDER_A_CALL = (
         By.XPATH, '(//li[@class="styles_listItem__ZxDwC styles_communicati'
@@ -92,8 +91,8 @@ class HeaderLocators:
         By.XPATH, '(//li[@class="styles_listItem__ZxDwC styles_communicatio'
                   'nListItem___jHWt"])[5]'
     )
-    REQUEST_A_CALL_LOCATOR = By.XPATH,  '//*[text()="Заказать звонок"]'
-    ASK_A_QUESTION_LOCATOR = By.XPATH,  '//*[text()="Задать вопрос"]'
+    REQUEST_A_CALL_LOCATOR = By.XPATH, '//*[text()="Заказать звонок"]'
+    ASK_A_QUESTION_LOCATOR = By.XPATH, '//*[text()="Задать вопрос"]'
     CLOSE_FEEDBACK_LOCATOR = (
         By.CSS_SELECTOR, '[class*="styles_closeModalIcon__PV5qz"]'
     )
@@ -107,7 +106,7 @@ class HeaderLocators:
     # payment and delivery methods
 
     PAYMENT_IN_INSTALLMENTS_LOCATOR = (
-        By.XPATH,  '(//li[@class="styles_navMenuItem__5EPNe"])[1]'
+        By.XPATH, '(//li[@class="styles_navMenuItem__5EPNe"])[1]'
     )
     BONUS_PROGRAM_LOCATOR = (
         By.XPATH, '(//li[@class="styles_navMenuItem__5EPNe"])[2]'
@@ -116,7 +115,7 @@ class HeaderLocators:
     # payment and delivery drop-list
 
     PAYMENT_AND_DELIVERY_DROP_LIST_LOCATOR = (
-        By.XPATH,  '(//*[text()="Еще"])[1]'
+        By.XPATH, '(//*[text()="Еще"])[1]'
     )
     PAYMENT_LOCATOR = (
         By.XPATH, '(//li[@class="styles_listItem__1ssEb"])[1]'
@@ -129,4 +128,3 @@ class HeaderLocators:
     )
 
     LOGOTYPE_LOCATOR = By.CSS_SELECTOR, '[class="logotype"]'
-

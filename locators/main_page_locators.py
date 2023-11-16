@@ -2,7 +2,6 @@ from selenium.webdriver.common.by import By
 
 
 class MainPageLocators:
-
     locator_reject_button_cookies = (
         By.CSS_SELECTOR, '[aria-label="Отклонить"]'
     )
@@ -39,5 +38,3 @@ class MainPageLocators:
     SLIDE_ALL_PROMOTIONS_LOCATOR = (
         By.XPATH, "(//*[contains(@class, 'SlidesPerView_right__Udl1V ')])[1]"
     )
-
-

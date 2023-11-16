@@ -1,3 +1,5 @@
+import allure
+
 from data.contacts import CONTACTS
 from data.urls import *
 from helpers.assertions import Assertion
@@ -7,30 +9,36 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class HeaderElement(Assertion, FieldsWebElement, HeaderLocators):
-
     CONTACT_CENTER_OPENING_HOURS_TEXT = 'контакт-центр\nс 8:00 до 22:00'
     request_text = '6.564.524'
 
+    @allure.step('Assert categories displayed')
     def assert_categories_displayed(self):
         assert self.wait_for_visible(
             self.CATEGORIES_CONTAINER_LOCATOR).is_displayed()
 
+    @allure.step('Confirm city selection')
     def confirm_city_selection(self):
         self.hard_click(self.CONFIRM_CITY_LOCATOR)
 
+    @allure.step('Click on save button')
     def click_on_save_button(self):
         self.hard_click(self.SAVE_BUTTON_LOCATOR)
 
+    @allure.step('Click on city selection button')
     def click_on_city_selection_button(self):
         self.click_on(self.CITY_SELECTION_BUTTON_LOCATOR)
 
+    @allure.step('Click on product')
     def click_on_product(self, product):
         self.click_on(product)
 
+    @allure.step('Enter product text')
     def enter_product_text(self, product):
         self.click_on(self.CATALOG_SEARCH_LOCATOR)
         self.fill(self.CATALOG_SEARCH_LOCATOR, product)
 
+    @allure.step('Assert all links lead to the desired page')
     def assert_all_links_lead_to_the_desired_page(self):
         """The method clicks on the dictionary keys and checks that the
         required pages are opened.
@@ -55,11 +63,12 @@ class HeaderElement(Assertion, FieldsWebElement, HeaderLocators):
             self.hard_click(key)
             self.assert_actual_url(value)
 
+    @allure.step('Assert correct visible contact a1')
     def assert_correct_visible_contact_a1(self):
         self.assert_text_in_element(
-            self.A1_PHONE_LOCATOR, CONTACTS.get('a1')
-        )
+            self.A1_PHONE_LOCATOR, CONTACTS.get('a1'))
 
+    @allure.step('assert viber link header')
     def assert_viber_link_header(self):
         """Clicking on the viber icon leads to the desired page."""
         self.assert_clicking_on_the_link_opens_the_desired_page(
@@ -67,6 +76,7 @@ class HeaderElement(Assertion, FieldsWebElement, HeaderLocators):
         )
         self.close_the_page_and_switch_to_page_zero()
 
+    @allure.step('Assert contacts from the drop down list')
     def assert_contacts_from_the_drop_down_list(self):
         self.click_on(self.CONTACTS_DROP_LIST_LOCATOR)
         self.assert_text_in_element(
@@ -76,6 +86,7 @@ class HeaderElement(Assertion, FieldsWebElement, HeaderLocators):
             self.LANDLINE_PHONE_LOCATOR, CONTACTS.get('landline')
         )
 
+    @allure.step('Assert link from the drop down list')
     def assert_link_from_the_drop_down_list(self):
         """The method calls all the contact icons in the header drop-down
         list and checks that they open the necessary links or the necessary
@@ -107,6 +118,7 @@ class HeaderElement(Assertion, FieldsWebElement, HeaderLocators):
         self.click_on(self.CONTACTS_BUTTON_LOCATOR)
         self.assert_actual_url(EXPECTED_CONTACTS_PAGE_URL)
 
+    @allure.step('Assert payment and delivery methods open correctly')
     def assert_payment_and_delivery_methods_open_correctly(self):
         self.assert_clicking_on_the_link_opens_the_desired_page(
             self.PAYMENT_IN_INSTALLMENTS_LOCATOR,
@@ -129,11 +141,8 @@ class HeaderElement(Assertion, FieldsWebElement, HeaderLocators):
             self.SELF_DELIVERY_LOCATOR, SELF_DELIVERY_PAGE_URL, 0
         )
 
+    @allure.step('Assert actual url click logotype')
     def assert_actual_url_click_logotype(self):
         self.wait_for_visible(self.LOGOTYPE_LOCATOR)
         self.click_on(self.LOGOTYPE_LOCATOR)
         self.assert_actual_url(DOMAIN)
-
-
-
-

@@ -8,6 +8,8 @@ from conftest import driver
 
 class TestBasketPage:
     @allure.feature('Basket')
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.story('Checks the display of goods in the cart')
     def test_cart_operation(self, driver):
         """Checks that when adding an item to the cart, the quantity and name
         of the goods are displayed."""
@@ -19,6 +21,8 @@ class TestBasketPage:
         basket_page.assert_the_quantity_and_name_of_the_product_are_displayed()
 
     @allure.feature('Basket')
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.story('Checking whether an item has been removed from the cart')
     def test_adding_and_removing_items_to_cart(self, driver):
         """Adds an item to the cart, then removes it and checks that the
         cart is empty."""
@@ -31,6 +35,8 @@ class TestBasketPage:
         basket_page.assert_basket_empty()
 
     @allure.feature('Favorites')
+    @allure.severity(allure.severity_level.MINOR)
+    @allure.story('Checks whether a product has been added to favorites')
     def test_add_product_to_favorites(self, driver):
         """Checks that if you click on the "add product to favorites" button
         for a product, then going to the favorites section, this product
@@ -44,8 +50,9 @@ class TestBasketPage:
         main_page.click_on(main_page.locator_account_button)
         basket_page.click_on(basket_page.FEATURED_PRODUCT_BUTTON_LOCATOR)
         basket_page.assert_product_in_favorites()
-    #
 
+    #
+    @allure.severity(allure.severity_level.TRIVIAL)
     @pytest.mark.skip('Promotional code is no longer valid')
     @allure.feature('Promotional code')
     @allure.story('Checks the operation of the promotional code')
@@ -61,4 +68,3 @@ class TestBasketPage:
         basket_page.enter_the_promotional_code_and_confirm()
         basket_page.calculate_price_after_discount()
         basket_page.assert_the_price_has_decreased()
-

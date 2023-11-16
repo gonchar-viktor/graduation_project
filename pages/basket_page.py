@@ -13,9 +13,11 @@ class BasketPage(FieldsWebElement, BasketLocator, Assertion):
                                  'не,\nвы можете выбрать их здесь'
     text_promo = 'СВЯЗЬ'
 
+    @allure.step('Click on product')
     def click_on_product(self, product):
         self.click_on(product)
 
+    @allure.step('Enter product text')
     def enter_product_text(self, product):
         self.click_on(self.CATALOG_SEARCH_LOCATOR)
         self.fill(self.CATALOG_SEARCH_LOCATOR, product)

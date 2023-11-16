@@ -2,7 +2,6 @@ from selenium.webdriver.common.by import By
 
 
 class BasketLocator:
-
     ADD_TO_CART_BUTTON_LOCATOR = (
         By.CSS_SELECTOR, '[class*="cr-buybtn__in j-ga_track"]'
     )
@@ -47,4 +46,3 @@ class BasketLocator:
     CONFIRM_PROMO_BUTTON_LOCATOR = (
         By.CSS_SELECTOR, '[data-testid="promocodeConfirmation"]'
     )
-
