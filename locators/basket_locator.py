@@ -35,3 +35,16 @@ class BasketLocator:
         By.XPATH, '//*[text()="Избранные товары"]'
     )
     FEATURED_PRODUCT_LOCATOR = By.CSS_SELECTOR, '.OldProductCard_card__fAG10'
+
+    # discount
+
+    PRICE_LOCATOR = (
+        By.CSS_SELECTOR, '[data-testid="total-price"]'
+    )
+    FIELD_FOR_ENTERING_PROMO_LOCATOR = (
+        By.CSS_SELECTOR, '[placeholder="Введите промокод"]'
+    )
+    CONFIRM_PROMO_BUTTON_LOCATOR = (
+        By.CSS_SELECTOR, '[data-testid="promocodeConfirmation"]'
+    )
+

@@ -10,6 +10,7 @@ class BasketPage(FieldsWebElement, BasketLocator, Assertion):
                         'R3M1 (белый)'
     expected_text_empty_basket = 'У вас пока нет ни одного товара в корзи' \
                                  'не,\nвы можете выбрать их здесь'
+    text_promo = 'СВЯЗЬ'
 
     def click_on_product(self, product):
         self.click_on(product)
@@ -62,3 +63,19 @@ class BasketPage(FieldsWebElement, BasketLocator, Assertion):
     def assert_product_in_favorites(self):
         assert self.product_name_text in self.wait_for_visible(
             self.FEATURED_PRODUCT_LOCATOR).text
+
+    def calculate_price_before_discount(self):
+        return self.wait_for_visible(self.PRICE_LOCATOR).text
+
+    def enter_the_promotional_code_and_confir(self):
+        self.fill(self.FIELD_FOR_ENTERING_PROMO_LOCATOR, self.text_promo)
+        self.click_on(self.CONFIRM_PROMO_BUTTON_LOCATOR)
+
+    def calculate_price_after_discount(self):
+        self.wait_for_element_to_change(self.PRICE_LOCATOR, '99,31')
+        return self.wait_for_visible(self.PRICE_LOCATOR).text
+
+    def assert_the_price_has_decreased(self):
+        assert int(self.calculate_price_before_discount()) > \
+               int(self.calculate_price_after_discount())
+

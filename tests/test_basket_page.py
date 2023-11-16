@@ -1,3 +1,6 @@
+import allure
+import pytest
+
 from pages.main_page import MainPage
 from pages.basket_page import BasketPage
 from conftest import driver
@@ -5,6 +8,7 @@ from conftest import driver
 
 class TestBasketPage:
 
+    @allure.title('f')
     def test_cart_operation(self, driver):
         """Checks that when adding an item to the cart, the quantity and name
         of the goods are displayed."""
@@ -39,3 +43,18 @@ class TestBasketPage:
         main_page.click_on(main_page.locator_account_button)
         basket_page.click_on(basket_page.FEATURED_PRODUCT_BUTTON_LOCATOR)
         basket_page.assert_product_in_favorites()
+
+    @pytest.mark.skip('promo code is no longer valid')
+    def test_discount(self, driver):
+        """Checks that by entering a promotional code the price will
+        decrease."""
+        main_page = MainPage(driver)
+        main_page.open_page_and_reject_cookies()
+        basket_page = BasketPage(driver)
+        basket_page.select_a_product_and_add_it_to_cart()
+        basket_page.go_to_cart()
+        basket_page.calculate_price_before_discount()
+        basket_page.enter_the_promotional_code_and_confir()
+        basket_page.calculate_price_after_discount()
+        basket_page.assert_the_price_has_decreased()
+

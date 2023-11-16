@@ -9,17 +9,20 @@ from elements.header_element import HeaderElement
 from helpers.cookies import Cookies
 from locators.main_page_locators import MainPageLocators
 from selenium.webdriver.common.by import By
+import allure
 
 
 class MainPage(FooterElement, Cookies, HeaderElement, MainPageLocators):
     expected_text_title = 'Онлайн-гипермаркет 21vek.by'
 
     def open(self):
-        self.driver.get(DOMAIN)
+        with allure.step('open main page'):
+            self.driver.get(DOMAIN)
 
     def reject_cookies(self):
         """A method for rejecting the agreement on the use of cookies on the
         site. Performs a double click on the reject button."""
+
         self.hard_click(self.locator_reject_button_cookies)
         self.hard_click(self.locator_reject_button_cookies)
 
@@ -38,7 +41,8 @@ class MainPage(FooterElement, Cookies, HeaderElement, MainPageLocators):
             self.assert_element_is_displayed(i)
 
     def assert_text_title(self):
-        assert self.expected_text_title == self.driver.title
+        with allure.step('checking the text from the title'):
+            assert self.expected_text_title == self.driver.title
 
     def assert_adding_products_to_favorites(self, range_val):
         """Checks that all products in the "all promotions" section can be

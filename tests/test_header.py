@@ -1,19 +1,27 @@
+import allure
 import pytest
 from data.urls import BOOK_PAGE_URL
 from pages.main_page import MainPage
 from conftest import driver
+import allure
 
 
 class TestHeader:
 
+    @allure.feature('product catalog button')
+    @allure.story('display elements')
     def test_product_catalog_button(self, driver):
         """Checks that when you click on the "product catalog" button, the
         categories of all products are displayed."""
-        header = MainPage(driver)
-        header.open_page_and_reject_cookies()
-        header.hard_click(header.PRODUCT_CATALOG_BUTTON_LOCATOR)
-        header.assert_categories_displayed()
+        with allure.step('open main page'):
+            header = MainPage(driver)
+            header.open_page_and_reject_cookies()
+        with allure.step('click on button product catalog'):
+            header.hard_click(header.PRODUCT_CATALOG_BUTTON_LOCATOR)
+        with allure.step('checking element display'):
+            header.assert_categories_displayed()
 
+    @allure.severity('normal')
     def test_click_on_logotype(self, driver):
         """Checks that the logo is visible on page and when clicked on it,
         the main page of the site opens."""
@@ -22,6 +30,8 @@ class TestHeader:
         header.click_on(header.LOGOTYPE_LOCATOR)
         header.assert_actual_url_click_logotype()
 
+    @allure.feature('city selection')
+    @allure.severity('high')
     @pytest.mark.parametrize(
         'selection_city', ['г. Минск', 'г. Брест', 'г. Витебск']
     )
