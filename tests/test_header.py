@@ -9,17 +9,14 @@ class TestHeader:
 
     @allure.feature('product catalog')
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.story('Checks product catalog')
+    @allure.story('Checks button product catalog')
     def test_product_catalog_button(self, driver):
         """Checks that when you click on the "product catalog" button, the
         categories of all products are displayed."""
-        with allure.step('open main page'):
-            header = MainPage(driver)
-            header.open_page_and_reject_cookies()
-        with allure.step('click on button product catalog'):
-            header.hard_click(header.PRODUCT_CATALOG_BUTTON_LOCATOR)
-        with allure.step('checking element display'):
-            header.assert_categories_displayed()
+        header = MainPage(driver)
+        header.open_page_and_reject_cookies()
+        header.hard_click(header.PRODUCT_CATALOG_BUTTON_LOCATOR)
+        header.assert_categories_displayed()
 
     @allure.feature('Logotype')
     @allure.severity(allure.severity_level.NORMAL)
@@ -32,7 +29,7 @@ class TestHeader:
         header.click_on(header.LOGOTYPE_LOCATOR)
         header.assert_actual_url_click_logotype()
 
-    @allure.feature('city selection')
+    @allure.feature('City selection')
     @allure.severity(allure.severity_level.NORMAL)
     @allure.story('Checks display city for delivery')
     @pytest.mark.parametrize(
@@ -43,11 +40,10 @@ class TestHeader:
         header = MainPage(driver)
         header.open_page_and_reject_cookies()
         header.click_on_city_selection_button()
-        header.fill(header.INPUT_CITY_SELECTION_LOCATOR, selection_city)
+        header.enter_the_city_in_the_input_field(selection_city)
         header.confirm_city_selection()
         header.click_on_save_button()
-        header.wait_for_element_to_change(
-            header.CITY_SELECTION_BUTTON_LOCATOR, selection_city)
+        header.wait_until_the_city_changes(selection_city)
         header.assert_text_in_element(
             header.CITY_SELECTION_BUTTON_LOCATOR, selection_city)
 
@@ -95,10 +91,7 @@ class TestHeader:
         is indicated on the website correctly."""
         header = MainPage(driver)
         header.open_page_and_reject_cookies()
-        header.assert_text_in_element(
-            header.CONTACT_CENTER_OPENING_HOURS_LOCATOR,
-            header.CONTACT_CENTER_OPENING_HOURS_TEXT
-        )
+        header.assert_contact_center_text()
 
     @allure.feature('Payment and shipping')
     @allure.severity(allure.severity_level.CRITICAL)

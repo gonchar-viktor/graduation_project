@@ -10,7 +10,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class HeaderElement(Assertion, FieldsWebElement, HeaderLocators):
     CONTACT_CENTER_OPENING_HOURS_TEXT = 'контакт-центр\nс 8:00 до 22:00'
-    request_text = '6.564.524'
+    request_text = 'Книга Попурри Самый богатый человек в Вавилоне / 97898' \
+                   '51548299 (Клейсон Дж.)'
 
     @allure.step('Assert categories displayed')
     def assert_categories_displayed(self):
@@ -28,6 +29,21 @@ class HeaderElement(Assertion, FieldsWebElement, HeaderLocators):
     @allure.step('Click on city selection button')
     def click_on_city_selection_button(self):
         self.click_on(self.CITY_SELECTION_BUTTON_LOCATOR)
+
+    @allure.step('enter the city in the input field')
+    def enter_the_city_in_the_input_field(self, selected_city):
+        self.fill(self.INPUT_CITY_SELECTION_LOCATOR, selected_city)
+
+    @allure.step('wait until the city changes')
+    def wait_until_the_city_changes(self, selected_city):
+        self.wait_for_element_to_change(
+            self.CITY_SELECTION_BUTTON_LOCATOR, selected_city)
+
+    @allure.step('assert contact center text')
+    def assert_contact_center_text(self):
+        self.assert_text_in_element(self.CONTACT_CENTER_OPENING_HOURS_LOCATOR,
+                                    self.CONTACT_CENTER_OPENING_HOURS_TEXT
+                                    )
 
     @allure.step('Click on product')
     def click_on_product(self, product):

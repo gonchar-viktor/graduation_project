@@ -43,3 +43,5 @@ BONUS_PROGRAM_PAGE_URL = f'{DOMAIN}special_offers/bonus.html'
 PAYMENT_PAGE_URL = f'{DOMAIN}services/order.html'
 DELIVERY_PAGE_URL = f'{DOMAIN}services/delivery.html'
 SELF_DELIVERY_PAGE_URL = f'{DOMAIN}self_delivery/'
+
+GIFT_CERTIFICATES_PAGE_URL = f'{DOMAIN}special_offers/gift_certificate.html'

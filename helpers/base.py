@@ -50,7 +50,7 @@ class BasePage:
         element = self.wait_for_clicable(locator)
         element.click()
 
-    #
+    # get
 
     @allure.step('get current url')
     def get_current_url(self):
@@ -118,8 +118,7 @@ class BasePage:
         element = self.wait_for_visible(locator)
         self.driver.execute_script(
             'arguments[0].setAttribute("display", arguments[1])', element,
-            'none'
-        )
+            'none')
 
     @allure.step('Prompt alert')
     def prompt_alert(self):

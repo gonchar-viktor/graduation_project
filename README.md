@@ -19,26 +19,26 @@ following technologies and tools:
 # Installation and launch of the project
 1. Install Python if not already installed.
 
-2. Clone the project repository: *git clone https://github.com/gonchar-viktor/graduation_project.git*
+2. Clone the project repository: `git clone https://github.com/gonchar-viktor/graduation_project.git`
 
-3. Go to the project directory: *cd graduation_project*
+3. Go to the project directory: `cd graduation_project`
 
-4. Install dependencies: *pip install -r requirements.txt*
+4. Install dependencies: `pip install -r requirements.txt`
 
-5. Run the tests: pytest *-s -v --reruns 5 -n 4*
+5. Run the tests: pytest `-s -v --reruns 5 -n 4`
 
 # Generating reports
 1. Install Allure if not already installed.
 2. Run tests with data generation for the report:
 + **for chrome browser:**
-*pytest --browser=chrome --alluredir allure_results_chrome*
+`pytest --browser=chrome --alluredir allure_results_chrome`
 + **for edge browser:**
-*pytest --browser=edge --alluredir allure_results_edge*
+`pytest --browser=edge --alluredir allure_results_edge`
 3. Generate a report: 
 + **for chrome browser:**
-*allure serve allure_results_chrome*
+`allure serve allure_results_chrome`
 + **for edge browser:**
-*allure serve allure_results_edge*
+`allure serve allure_results_edge`
 
 # Project structure
 + tests/ - directory with tests
@@ -53,8 +53,10 @@ following technologies and tools:
 
 
 # Author
-● Name: **Gonchar Viktor** - Automation QA Engineer(Python)
+● Name: **Gonchar Viktor** - *Automation QA Engineer(Python)*
 
 ● Email: *vita-sc2@mail.ru*
+
+● Telegram: *https://t.me/Flagman910*
 
 ● Phone: *+375(29)213-74-92*

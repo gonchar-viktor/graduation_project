@@ -38,3 +38,16 @@ class MainPageLocators:
     SLIDE_ALL_PROMOTIONS_LOCATOR = (
         By.XPATH, "(//*[contains(@class, 'SlidesPerView_right__Udl1V ')])[1]"
     )
+
+    #
+
+    SHOW_MORE_BUTTON_LOCATOR = (
+        By.CSS_SELECTOR, '[class*="Button-module__blue-secondary"]'
+    )
+
+    #
+
+    SLIDE_ALL_PROMOTIONS_LOCATOR2 = (
+        By.XPATH, "(//*[contains(@class, 'SlidesPerView_right__Udl1V ')])[2]"
+    )
+

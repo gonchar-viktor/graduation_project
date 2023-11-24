@@ -102,10 +102,10 @@ class FooterElement(Assertion, FieldsWebElement, FooterLocators):
         )
 
     @allure.step('Checking the clickability of locators from the title')
-    def checking_the_clickability_of_locators_from_the_title(self, range_val):
+    def checking_the_clickability_of_locators_from_the_title(self):
         """The method checks all received locators from the title
         for clickability."""
-        for i in range(1, range_val):
+        for i in range(1, 43):
             param_locator = (
                 By.XPATH,
                 f'(//*[@class="styles_sitemapItem__Novv5"])[{i}]'
@@ -137,3 +137,17 @@ class FooterElement(Assertion, FieldsWebElement, FooterLocators):
                 assert element.is_enabled, f"Locator {i} is not clickable"
             except NoSuchElementException:
                 assert False, f"Locator {i} is not found"
+
+    def fill_email(self):
+        self.fill(
+            self.INPUT_SUBSCRIPTION_EMAIL_LOCATOR, TEST_USER.get('email'))
+
+    def fill_password(self):
+        self.fill(
+            self.AUTHORIZATION_PASSWORD_LOCATOR, TEST_USER.get('password'))
+
+    def click_on_button_login(self):
+        self.hard_click(self.AUTHORIZATION_BUTTON_LOGIN_LOCATOR)
+
+    def submit_consent_to_the_processing_of_personal_data(self):
+        self.hard_click(self.CONSENT_BUTTON_LOCATOR)

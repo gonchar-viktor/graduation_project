@@ -10,18 +10,16 @@ class TestFooter:
 
     @allure.feature('Contacts')
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.story('Check display contacts in footer')
+    @allure.story('Checks that the contacts are displayed.')
     def test_contacts_in_footer_are_visible(self, driver):
-        """Checks that the contacts are displayed."""
         footer = MainPage(driver)
         footer.open_page_and_reject_cookies()
         footer.assert_element_is_displayed(footer.CONTACTS_FOOTER_LOCATOR)
 
     @allure.feature('Contacts')
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.story('Check display correctly phones in footer')
+    @allure.story('Checks that phones are displayed correctly')
     def test_correct_display_of_numbers_in_footer(self, driver):
-        """Checks that phones are displayed correctly in footer."""
         footer = MainPage(driver)
         footer.open_page_and_reject_cookies()
         footer.assert_the_numbers_footer_are_displayed_correctly()
@@ -52,19 +50,17 @@ class TestFooter:
 
     @allure.feature('Social networks')
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.story('Check display social networks')
+    @allure.story('Checks that the social networks are displayed')
     def test_social_networks_display(self, driver):
-        """Checks that the social networks are displayed."""
         footer = MainPage(driver)
         footer.open_page_and_reject_cookies()
-        footer.assert_element_is_displayed(
-            footer.SOCIAL_NETWORKS_LOCATOR)
+        footer.assert_element_is_displayed(footer.SOCIAL_NETWORKS_LOCATOR)
 
     @allure.feature('Social networks')
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.story('Check that all links to social networks are open')
+    @allure.story('Check open links to social networks')
     def test_click_link_social_networks(self, driver):
-        """Checks each social network icon to ensure that it opens the
+        """Checks that each social network icon, when clicked, opens the
         correct page."""
         footer = MainPage(driver)
         footer.open_page_and_reject_cookies()
@@ -72,9 +68,8 @@ class TestFooter:
 
     @allure.feature('Tittle')
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.story('Check text title')
+    @allure.story('Checking the text from the title columns')
     def test_text_title_columns(self, driver):
-        """Checking the text from the title columns."""
         footer = MainPage(driver)
         footer.open_page_and_reject_cookies()
         footer.assert_title_text()
@@ -86,20 +81,19 @@ class TestFooter:
         """Checking the clickability of all title links from the footer."""
         footer = MainPage(driver)
         footer.open_page_and_reject_cookies()
-        footer.checking_the_clickability_of_locators_from_the_title(43)
+        footer.checking_the_clickability_of_locators_from_the_title()
 
     @allure.feature('Email subscription')
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.story('Check email subscription')
+    @allure.story('Checks the display of the email subscription element')
     def test_email_subscription_element(self, driver):
-        """Checks the display of the email subscription element."""
         footer = MainPage(driver)
         footer.open_page_and_reject_cookies()
         footer.assert_display_of_the_email_subscription_element()
 
     @allure.feature('Email subscription')
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.story('Check display text in the email subscription')
+    @allure.story('Check text in email subscription')
     def test_text_in_the_email_subscription_element(self, driver):
         """Checks whether the text in the email subscription element is
         displayed correctly."""
@@ -116,36 +110,25 @@ class TestFooter:
         entering it in the input field located in footer."""
         footer = MainPage(driver)
         footer.open_page_and_reject_cookies()
-        footer.fill(
-            footer.INPUT_SUBSCRIPTION_EMAIL_LOCATOR,
-            TEST_USER.get('email')
-        )
+        footer.fill_email()
         footer.hard_click(footer.BUTTON_SUBSCRIPTION_EMAIL_LOCATOR)
-        footer.assert_element_is_displayed(
-            footer.AUTHORIZATION_WINDOW_LOCATOR)
-        footer.fill(
-            footer.AUTHORIZATION_PASSWORD_LOCATOR,
-            TEST_USER.get('password')
-        )
-        footer.hard_click(footer.AUTHORIZATION_BUTTON_LOGIN_LOCATOR)
-        footer.hard_click(footer.CONSENT_BUTTON_LOCATOR)
+        footer.assert_element_is_displayed(footer.AUTHORIZATION_WINDOW_LOCATOR)
+        footer.fill_password()
+        footer.click_on_button_login()
+        footer.submit_consent_to_the_processing_of_personal_data()
         footer.assert_actual_url(DOMAIN)
 
     @allure.feature('Information_block')
     @allure.severity(allure.severity_level.TRIVIAL)
-    @allure.story('Checks display text in information block')
+    @allure.story('Checks text in information block')
     def test_text_information_block(self, driver):
         """Checks that the information block is visible on the user's
         page, as well as that the text in it is displayed correctly."""
         footer = MainPage(driver)
         footer.open_page_and_reject_cookies()
-        footer.assert_element_is_displayed(
-            footer.INFORMATION_BLOCK_LOCATOR
-        )
+        footer.assert_element_is_displayed(footer.INFORMATION_BLOCK_LOCATOR)
         footer.assert_text_in_element(
-            footer.INFORMATION_BLOCK_LOCATOR,
-            footer.text_information_block
-        )
+            footer.INFORMATION_BLOCK_LOCATOR, footer.text_information_block)
 
     @allure.feature('Payment systems')
     @allure.severity(allure.severity_level.NORMAL)
