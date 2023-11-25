@@ -77,3 +77,9 @@ class LoginPage(MainPage, LoginLocators):
     @allure.step('Assert switching to the new user registration window')
     def assert_switching_to_the_new_user_registration_window(self):
         assert EC.visibility_of_element_located(self.locator_assert_register)
+
+
+    def open_and_go_to_next_tab(self):
+        self.driver.execute_script("window.open()")
+        handles = self.driver.window_handles
+        self.driver.switch_to.window(handles[1])

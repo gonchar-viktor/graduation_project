@@ -83,7 +83,7 @@ class TestHeader:
         header.assert_contacts_from_the_drop_down_list()
         header.assert_link_from_the_drop_down_list()
 
-    @allure.feature('contact center')
+    @allure.feature('Contact center')
     @allure.severity(allure.severity_level.NORMAL)
     @allure.story('Checks contact center')
     def test_information_contact_center(self, driver):

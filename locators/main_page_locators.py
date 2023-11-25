@@ -50,4 +50,3 @@ class MainPageLocators:
     SLIDE_ALL_PROMOTIONS_LOCATOR2 = (
         By.XPATH, "(//*[contains(@class, 'SlidesPerView_right__Udl1V ')])[2]"
     )
-

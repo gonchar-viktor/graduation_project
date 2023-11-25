@@ -25,20 +25,20 @@ following technologies and tools:
 
 4. Install dependencies: `pip install -r requirements.txt`
 
-5. Run the tests: pytest `-s -v --reruns 5 -n 4`
+5. Run the tests: `pytest -s -v --reruns 5 -n 4`
 
 # Generating reports
 1. Install Allure if not already installed.
 2. Run tests with data generation for the report:
 + **for chrome browser:**
-`pytest --browser=chrome --alluredir allure_results_chrome`
+`make test_chrome`
 + **for edge browser:**
-`pytest --browser=edge --alluredir allure_results_edge`
+`make test_edge`
 3. Generate a report: 
 + **for chrome browser:**
-`allure serve allure_results_chrome`
+`make serve_results_chrome`
 + **for edge browser:**
-`allure serve allure_results_edge`
+`make serve_results_edge`
 
 # Project structure
 + tests/ - directory with tests

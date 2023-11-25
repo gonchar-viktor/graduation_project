@@ -1,0 +1,1 @@
+{"name": "test_login", "status": "skipped", "description": "Checks the user's authorization on the site, and checks that the\n        username is correct", "start": 1700873530959, "stop": 1700873530959, "uuid": "5b78d6cf-8110-4abb-ab7a-2baa24f786d8", "testCaseId": "47edb55b541b63e1e55a8a6706e38ac4", "fullName": "tests.test_api.TestApi#test_login"}

@@ -7,7 +7,7 @@ from pages.login_page import user_authorization
 
 class TestAuthorizationWindow:
 
-    @allure.feature('authorization')
+    @allure.feature('Authorization')
     @allure.severity(allure.severity_level.NORMAL)
     @allure.story('Checks that the user is authorized')
     def test_user_will_be_logged_new_sessions(
@@ -16,13 +16,11 @@ class TestAuthorizationWindow:
         The test checks the user's automatic login to the account in a new
         session."""
         login_page = LoginPage(driver)
-        login_page.driver.execute_script("window.open()")
-        handles = login_page.driver.window_handles
-        login_page.driver.switch_to.window(handles[1])
+        login_page.open_and_go_to_next_tab()
         login_page.driver.get(login_page.link_main_page)
         login_page.assert_that_the_user_has_logged_in()
 
-    @allure.feature('authorization window')
+    @allure.feature('Authorization window')
     @allure.severity(allure.severity_level.NORMAL)
     @allure.story('Checks mail format')
     def test_incorrect_email_format(self, driver):
@@ -34,7 +32,7 @@ class TestAuthorizationWindow:
         login_page.hard_click(login_page.locator_login_submit)
         login_page.assert_error_message_email()
 
-    @allure.feature('authorization window')
+    @allure.feature('Authorization window')
     @allure.severity(allure.severity_level.NORMAL)
     @allure.story('Checks incorrect password')
     def test_incorrect_password(self, driver):
@@ -46,7 +44,7 @@ class TestAuthorizationWindow:
         login_page.hard_click(login_page.locator_login_submit)
         login_page.assert_error_message_password()
 
-    @allure.feature('')
+    @allure.feature('Possibility to register')
     @allure.severity(allure.severity_level.NORMAL)
     @allure.story('Checks window registration new user')
     def test_possible_to_register_a_new_user(self, driver):
