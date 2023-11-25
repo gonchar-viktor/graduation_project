@@ -1,25 +1,25 @@
 import allure
 import pytest
-import requests
 import json
-
+from all_api.models import AuthorizationUser
 from data import DOMAIN
-from elements.api import Api
+from all_api.api import Api
+from all_api.data import Data
 
 
 class TestApi:
-    api = Api
 
     @allure.feature("Main page")
     @allure.severity(allure.severity_level.BLOCKER)
     @allure.step('Testing status and output of the request time')
     def test_main_page(self):
-        response = requests.get(DOMAIN)
-        print(f"\n{response.headers['date']}")
+        response = Api(DOMAIN).get_requests()
+        print(response.headers['date'])
         try:
-            assert response.status_code == 200
+            assert response.status == 200
+            assert 'date' in response.headers
         except json.JSONDecodeError:
-            assert False, f"Status code = {response.status_code}"
+            assert False, f"Status code incorrect -- {response.status}!= 200"
 
     @allure.feature('Main elements of the page')
     @allure.severity(allure.severity_level.CRITICAL)
@@ -27,16 +27,12 @@ class TestApi:
     def test_main_elements_of_the_page(self):
         """Checks the request status and request method of the main elements
         on the page"""
-        api = Api
-        for url in api.urls_main_elements_of_the_page:
-            response = requests.get(
-                url, headers=api.headers
-            )
-            print(f"Status code = {response.status_code}")
-            print(f"request = {response.request}")
+        headers = Data.headers
+        for url in Data.urls_main_elements_of_the_page:
+            response = Api(url).get_requests(headers)
             try:
-                assert response.status_code == 200 and \
-                       '<PreparedRequest [GET]>' == f'{response.request}'
+                assert response.status == 200
+                assert '<PreparedRequest [GET]>' == f'{response.request}'
             except json.JSONDecodeError:
                 assert False, f"The status code or request method is not " \
                               f"correct"
@@ -47,16 +43,14 @@ class TestApi:
     def test_login(self):
         """Checks the user's authorization on the site, and checks that the
         username is correct"""
-        api = Api
-        response = requests.post(
-            api.url_users_login,
-            headers=api.headers_user_login,
-            data=api.payload_user_data
-        )
-        response_json = response.json()['user']['name']
-        print(f"\nUsername is  = '{response_json}'")
+        data = AuthorizationUser.user_data()
+        headers = Data.headers_user_login
+        response = Api(DOMAIN).authorization_user(data, headers)
+        name_user = response.response['user']['name']
+        print(f"\nUsername is  = '{name_user}'")
         try:
-            assert response_json == 'test user name'
+            assert name_user == 'test user name'
+            assert isinstance(name_user, str)
         except json.JSONDecodeError:
             assert False, f"User is not authorized"
 
@@ -64,22 +58,21 @@ class TestApi:
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.step('Testing adding product to cart')
     @pytest.mark.parametrize('payload_product', [
-        api.payload_add_to_basket_product_1,
-        api.payload_add_to_basket_product_2])
+        Data.payload_add_to_basket_product_1,
+        Data.payload_add_to_basket_product_2])
     def test_add_product_to_basket(self, payload_product):
         """Checks that one product has been added to the cart first,
         then another."""
-        api = Api
-        response = requests.post(
-            api.url_add_to_basket,
-            headers=api.headers,
-            data=payload_product
-        )
-        response_json = response.json()['data']['items']
-        print(f"ID of added product = {response_json[0]['entityId']}")
+        headers = Data.headers
+        response = Api(Data.url_add_to_basket).post_requests(
+            payload_product, headers)
+        item = response.response['data']['items'][0]
+        print(f"ID of added product = {item['entityId']}")
         try:
-            assert response_json[0]['count'] == 1 and 'data' in json.loads(
-                response.text)
+            assert response.status == 200
+            assert item['count'] == 1
+            assert isinstance(item['count'], int)
+            assert 'data' in json.loads(response.text)
         except json.JSONDecodeError:
             assert False, f"Product not added to cart"
 
@@ -89,14 +82,14 @@ class TestApi:
     def test_invalid_request(self):
         """Checking that if there is an incorrect request to add an item to
         the cart, an error with the desired status will be raised"""
-        api = Api
-        response = requests.post(
-            api.url_add_to_basket,
-            headers=api.headers
-        )
+        headers = Data.headers
+        data = {}
+        response = Api(Data.url_add_to_basket).post_requests(data, headers)
+        errors_title = response.response['errors'][0]['title']
         try:
-            assert 'errors' in json.loads(response.text) and response.json()[
-                'errors'][0]['title'] == api.expected_text_title and \
-                   response.status_code == 422
+            assert 'errors' in json.loads(response.text)
+            assert errors_title == Data.expected_text_title
+            assert isinstance(errors_title, str)
+            assert response.status == 422
         except json.JSONDecodeError:
             assert False, f"The request did not complete as expected"
