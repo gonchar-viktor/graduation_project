@@ -105,12 +105,13 @@ class Api:
 
     @staticmethod
     def assert_that_the_parameter_is_in_the_response(response, param):
+        print(json.loads(response.text))
         assert f"{param}" in json.loads(response.text), \
             f"Parameter {param} is not in the response"
 
     @staticmethod
     def get_text_error(response):
-        text_error = response['errors'][0]['title']
+        text_error = response.json()['errors'][0]['title']
         Api.logger().info(text_error)
         return text_error
 

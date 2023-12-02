@@ -63,7 +63,7 @@ class TestApi:
                 'Checks whether the "count_item" object is of type integer'):
             Api.assert_whether_the_object_is_of_type_integer(count_item)
         with allure.step('Check that the data parameter is in the response'):
-            Api.assert_that_the_parameter_is_in_the_response(response, 'date')
+            Api.assert_that_the_parameter_is_in_the_response(response, "data")
 
     @pytest.mark.api
     @allure.feature('Test basket')

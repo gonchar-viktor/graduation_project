@@ -30,7 +30,6 @@ def pytest_addoption(parser):
 @allure.feature('browser selection and options')
 @pytest.fixture(autouse=True)
 def driver(request):
-    driver_browser = None
     headless = request.config.getoption('--headless', default='false')
     browser = request.config.getoption('--browser', default='chrome')
 
@@ -38,6 +37,8 @@ def driver(request):
         driver_browser = create_chrome(headless)
     elif browser == 'edge':
         driver_browser = create_edge(headless)
+    else:
+        raise ValueError(f"Invalid browser option: {browser}")
 
     driver_browser.implicitly_wait(WAIT_UNTIL)
     driver_browser.maximize_window()

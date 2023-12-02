@@ -6,7 +6,6 @@ from helpers.base import BasePage
 class Assertion(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
-        self.wait_until = 10
 
     @allure.step('Assert text in element')
     def assert_text_in_element(self, locator, expected_result):

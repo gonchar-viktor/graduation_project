@@ -32,7 +32,7 @@ EXPECTED_TELEGRAM_PAGE_URL = 'https://t.me/e21vekbot'
 
 BOOK_PAGE_URL = f'{DOMAIN}nonfiction_books/popuri_01309.html'
 
-#  contacts
+#  contact
 
 EXPECTED_CONTACTS_PAGE_URL = f'{DOMAIN}services/contacts.html'
 
