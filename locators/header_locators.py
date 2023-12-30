@@ -11,8 +11,6 @@ class HeaderLocators:
     MARKDOWN_LOCATOR = By.XPATH, '//*[text()="Уценка"]'
     TIRES_LOCATOR = By.XPATH, '//*[text()="Шины"]'
     REFRIGERATORS_LOCATOR = By.XPATH, '//*[text()="Холодильники"]'
-    WASHING_MACHINES_LOCATOR = By.XPATH, '//*[text()="Стиральные машины"]'
-    BOILERS_LOCATOR = By.XPATH, '//*[text()="Котлы"]'
     SMARTPHONES_LOCATOR = By.XPATH, '//*[text()="Смартфоны"]'
     LAPTOPS_LOCATOR = By.XPATH, '//*[text()="Ноутбуки"]'
     TELEVISIONS_LOCATOR = By.XPATH, '//*[text()="Телевизоры"]'
@@ -35,7 +33,7 @@ class HeaderLocators:
         By.CSS_SELECTOR, '[class="styles_localityBtn__qrGFQ"]'
     )
     INPUT_CITY_SELECTION_LOCATOR = (
-        By.CSS_SELECTOR, 'input[label="Населенный пункт"]'
+        By.CSS_SELECTOR, 'input[class="select__input"]'
     )
     SAVE_BUTTON_LOCATOR = (
         By.CSS_SELECTOR,
@@ -118,13 +116,13 @@ class HeaderLocators:
         By.XPATH, '(//*[text()="Еще"])[1]'
     )
     PAYMENT_LOCATOR = (
-        By.XPATH, '(//li[@class="styles_listItem__1ssEb"])[1]'
+        By.CSS_SELECTOR, 'li>a[href="/services/order.html"]'
     )
     DELIVERY_LOCATOR = (
-        By.XPATH, '(//li[@class="styles_listItem__1ssEb"])[2]'
+        By.CSS_SELECTOR, 'li>a[href="/services/delivery.html"] '
     )
     SELF_DELIVERY_LOCATOR = (
-        By.XPATH, '(//li[@class="styles_listItem__1ssEb"])[3]'
+        By.CSS_SELECTOR, 'li>a[href="/services/self_delivery.html"]'
     )
 
     LOGOTYPE_LOCATOR = By.CSS_SELECTOR, '[class="logotype"]'

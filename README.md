@@ -16,6 +16,8 @@ following technologies and tools:
 
 + Build system: Makefile
 
++ Application deployment platform: Dockerfile
+
 # Installation and launch of the project
 1. Install Python if not already installed.
 
@@ -25,20 +27,14 @@ following technologies and tools:
 
 4. Install dependencies: `pip install -r requirements.txt`
 
-5. Run the tests: `pytest -s -v --reruns 5 -n 4`
+5. Run the tests: `pytest -s -v --reruns 2 -n 4`
 
 # Generating reports
 1. Install Allure if not already installed.
-2. Run tests with data generation for the report:
-+ **for chrome browser:**
-`make test_chrome`
-+ **for edge browser:**
-`make test_edge`
+2. Run tests with data generation for the report: 
+**for chrome browser:** `make test_chrome`, **for edge browser:** `make test_edge`
 3. Generate a report: 
-+ **for chrome browser:**
-`make serve_results_chrome`
-+ **for edge browser:**
-`make serve_results_edge`
+**for chrome browser:** `make serve_results_chrome`, **for edge browser:** `make serve_results_edge`
 
 # Project structure
 + tests/ - directory with tests
@@ -46,17 +42,17 @@ following technologies and tools:
 + locators/ - directory with locators
 + helpers/ - directory with utility functions and classes
 + elements/ - directory with utility functions and classes for footer and header elements
-+ Makefile - file with commands for building the project
 + data/ - directory with test data
++ all_api/ - directory with utility functions and classes for api tests
++ Makefile - file with commands for building the project
 + requirements.txt - file with project dependencies
 + conftest.py - file for storing fixtures
-
++ pytest.ini - file the Pytest configuration
++ docker-compose.yml - a file with commands to run multiple containers at the same time
++ Dockerfile - a file with commands for creating a container image
 
 # Author
-● Name: **Gonchar Viktor** - *Automation QA Engineer(Python)*
-
-● Email: *vita-sc2@mail.ru*
-
-● Telegram: *https://t.me/Flagman910*
-
-● Phone: *+375(29)213-74-92*
++ Name: **Gonchar Viktor** - *Automation QA Engineer(Python)*
++ Email: *vita-sc2@mail.ru*
++ Telegram: *https://t.me/gonchar_viktor* 
++ Phone: *+375(29)213-74-92*

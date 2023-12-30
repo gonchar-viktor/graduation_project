@@ -13,7 +13,7 @@ def user_authorization(driver):
     """User authorization fixture on the site"""
     with allure.step('Initializes an object of the LoginPage class'):
         login_page = LoginPage(driver)
-    login_page.log_in_to_the_login_window()
+    login_page.log_in_to_the_login_window(driver)
     login_page.fill_email()
     login_page.fill_password()
     login_page.confirm_data()
@@ -48,7 +48,7 @@ class LoginPage(MainPage, LoginLocators):
         assert EC.visibility_of_element_located(self.locator_personal_data)
 
     @allure.step('Log in to the login window')
-    def log_in_to_the_login_window(self):
+    def log_in_to_the_login_window(self, driver):
         self.driver.get(self.link_main_page)
         self.reject_cookies()
         self.hard_click(self.locator_account_button)
@@ -78,8 +78,7 @@ class LoginPage(MainPage, LoginLocators):
     def assert_switching_to_the_new_user_registration_window(self):
         assert EC.visibility_of_element_located(self.locator_assert_register)
 
-
-    def open_and_go_to_next_tab(self):
+    def open_and_go_to_next_tab(self, driver):
         self.driver.execute_script("window.open()")
         handles = self.driver.window_handles
         self.driver.switch_to.window(handles[1])

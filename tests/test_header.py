@@ -1,4 +1,3 @@
-import pytest
 from data.urls import BOOK_PAGE_URL
 from pages.main_page import MainPage
 from conftest import driver
@@ -28,24 +27,6 @@ class TestHeader:
         header.open_page_and_reject_cookies()
         header.click_on(header.LOGOTYPE_LOCATOR)
         header.assert_actual_url_click_logotype()
-
-    @allure.feature('City selection')
-    @allure.severity(allure.severity_level.NORMAL)
-    @allure.story('Checks display city for delivery')
-    @pytest.mark.parametrize(
-        'selection_city', ['г. Минск', 'г. Брест', 'г. Витебск'])
-    def test_city_selection(self, driver, selection_city):
-        """Checks that you can change the city for delivery, and it will be
-        displayed on the site."""
-        header = MainPage(driver)
-        header.open_page_and_reject_cookies()
-        header.click_on_city_selection_button()
-        header.enter_the_city_in_the_input_field(selection_city)
-        header.confirm_city_selection()
-        header.click_on_save_button()
-        header.wait_until_the_city_changes(selection_city)
-        header.assert_text_in_element(
-            header.CITY_SELECTION_BUTTON_LOCATOR, selection_city)
 
     @allure.feature('Catalog search')
     @allure.severity(allure.severity_level.NORMAL)

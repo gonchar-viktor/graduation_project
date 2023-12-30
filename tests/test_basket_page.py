@@ -58,7 +58,7 @@ class TestBasketPage:
     @allure.story('Checks the operation of the promotional code')
     def test_discount(self, driver):
         """Checks that by entering a promotional code the price will
-        decrease."""
+        decrease.   Promotional code is not valid !!!   """
         main_page = MainPage(driver)
         main_page.open_page_and_reject_cookies()
         basket_page = BasketPage(driver)

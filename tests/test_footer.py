@@ -1,6 +1,4 @@
 import allure
-
-from data.user import TEST_USER
 from data.urls import DOMAIN
 from pages.main_page import MainPage
 from conftest import driver
